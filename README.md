@@ -1,25 +1,32 @@
-# Breast Cancer Classification with a Decision Tree (From Scratch)
+# Breast Cancer Diagnosis with Streamlit Decision Tree (From Scratch)
 
-This project builds and evaluates a binary classification Decision Tree for breast cancer diagnosis using pure Python, NumPy, and pandas.
-
-The notebook demonstrates:
-- Data loading and quick inspection
-- Basic cleaning and target encoding
-- A custom Decision Tree implementation
-- Stratified train/test split
-- Feature importance estimation
-- Evaluation with accuracy, classification report, and confusion matrix
+This project provides an interactive Streamlit app that trains and evaluates a custom Decision Tree for breast cancer diagnosis using pure Python, NumPy, and pandas.
 
 ## Project Files
 
-- `breast-cancer-classification.ipynb` - Main notebook with the full workflow
-- `data.csv` - Breast cancer dataset used by the notebook
+- app.py - Main Streamlit app
+- data/breast-cancer.csv - Dataset used by the app
+- requirements.txt - Python dependencies
+- breast-cancer-classification.ipynb - Optional notebook version
+
+## What app.py Includes
+
+- Custom Decision Tree implementation from scratch (no scikit-learn tree)
+- Impurity and split logic (majority impurity, Gini, entropy, information gain)
+- Stratified train/test split
+- Tree training, prediction, and recursive structure building
+- Node counting utility for model size
+- Feature importance calculation from split gains
+- Streamlit UI with four tabs:
+	- Dataset: overview metrics, correlation analysis, sample records
+	- Train Model: parameter controls, model training, tree text visualization
+	- Results: accuracy/precision/recall/F1, compact confusion matrix, clinical interpretation, feature-importance table
+	- Predict: manual patient input with model diagnosis output
 
 ## Requirements
 
 - Python 3.9+
-- Jupyter Notebook or VS Code Jupyter extension
-- Dependencies are listed in `requirements.txt`
+- Dependencies listed in requirements.txt
 
 ## Setup
 
@@ -31,34 +38,42 @@ The notebook demonstrates:
 pip install -r requirements.txt
 ```
 
-## Run
-
-1. Start Jupyter:
+## Run the App
 
 ```bash
-jupyter notebook
+streamlit run app.py
 ```
 
-2. Open `breast-cancer-classification.ipynb`.
-3. Run cells from top to bottom.
+Then open the local Streamlit URL shown in the terminal.
 
-## Workflow Summary
+## Screenshots
 
-1. Load the dataset.
-2. Drop non-useful columns (`id`, `Unnamed: 32`).
-3. Encode diagnosis into a binary target (`M -> 1`, `B -> 0`).
-4. Train a custom Decision Tree class.
-5. Evaluate with train/test accuracy, per-class metrics, and confusion matrix.
+Add screenshots in a `screenshots/` folder at the project root and update file names if needed.
 
-## Notes
+### Dataset Tab
 
-- The notebook currently uses `pd.read_csv('/data.csv')`, which may fail on some systems because it is an absolute path.
-- If that happens, change it to:
+![Dataset Tab](screenshots/dataset-tab.png)
 
-```python
-df = pd.read_csv('data.csv')
-```
+### Train Model Tab
+
+![Train Model Tab](screenshots/train-model-tab.png)
+
+### Results Tab
+
+![Results Tab](screenshots/results-tab.png)
+
+### Predict Tab
+
+![Predict Tab](screenshots/predict-tab.png)
+
+## Data Preparation in app.py
+
+The app loads data from data/breast-cancer.csv and applies:
+
+1. Remove id when present
+2. Remove Unnamed: 32 when present
+3. Encode diagnosis as binary target: M -> 1, B -> 0
 
 ## Learning Objective
 
-This project is designed to help understand how Decision Trees work internally (splits, impurity, information gain, recursion, and predictions) rather than relying on a prebuilt model implementation.
+This project is designed to help understand how Decision Trees work internally (split search, impurity reduction, recursion, and prediction) while using a practical interactive interface.
