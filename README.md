@@ -19,9 +19,7 @@ The notebook demonstrates:
 
 - Python 3.9+
 - Jupyter Notebook or VS Code Jupyter extension
-- Python packages:
-  - numpy
-  - pandas
+- Dependencies are listed in `requirements.txt`
 
 ## Setup
 
@@ -30,7 +28,7 @@ The notebook demonstrates:
 3. Install dependencies:
 
 ```bash
-pip install numpy pandas notebook
+pip install -r requirements.txt
 ```
 
 ## Run
